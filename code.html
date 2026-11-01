@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CODE — MARTZ11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="data.js"></script>
+<script src="main.js"></script>
+</head>
+<body>
+<main>
+  <form class="code-box" id="form">
+    <div>ENTER YOUR CODE</div>
+    <input id="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="CODE" required>
+    <button class="btn" type="submit">ENTER</button>
+    <div class="msg" id="msg"></div>
+  </form>
+</main>
+<script>
+layout("CODE");
+document.getElementById("form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const msg = document.getElementById("msg");
+  const code = normalizeCode(document.getElementById("code").value);
+  // the link carries the code itself, so the hashes in data.js can't open a page
+  if (PRIVATE[await sha256(code)]) location.href = "private.html#" + encodeURIComponent(code);
+  else msg.textContent = "INVALID CODE";
+});
+</script>
+</body>
+</html>

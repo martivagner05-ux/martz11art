@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MARTZ11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="data.js"></script>
+<script src="main.js"></script>
+</head>
+<body>
+<main id="main"></main>
+<script>
+layout("CODE");
+(async () => {
+  const code = normalizeCode(decodeURIComponent(location.hash.slice(1)));
+  const p = code && PRIVATE[await sha256(code)];
+  const main = document.getElementById("main");
+  if (p) renderCertificate(main, p);
+  else main.innerHTML = `<div class="empty">THIS PAGE NEEDS A CODE<br><a href="code.html">ENTER CODE →</a></div>`;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MARTZ11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="data.js"></script>
+<script src="main.js"></script>
+</head>
+<body>
+<main id="main"></main>
+<script>
+layout("ARCHIVE");
+const id = new URLSearchParams(location.search).get("id");
+const p = ARCHIVE.find(x => x.id === id);
+const main = document.getElementById("main");
+if (p) renderDetail(main, p, "archive.html", "ARCHIVE", false);
+else main.innerHTML = `<div class="empty">NOT FOUND<br><a href="archive.html">← ARCHIVE</a></div>`;
+</script>
+</body>
+</html>
