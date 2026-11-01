@@ -86,6 +86,7 @@ function renderCertificate(el, p) {
   const rows = [
     ["TITLE", p.title],
     ["NO.", p.number],
+    ["EDITION", "1 OF 1"],
     ["SIZE", p.size],
     ["MEDIUM", p.medium],
     ["PAINTED", p.painted],
@@ -103,13 +104,12 @@ function renderCertificate(el, p) {
         <div class="cert-head">CERTIFICATE OF AUTHENTICITY</div>
         <div class="frame">${picture(p)}</div>
         <div class="rows">${rows}</div>
-        <p class="cert-text">This certifies that the artwork described above is an original work, hand painted by Martz11.</p>
+        <p class="cert-text">This certifies that the artwork described above is an original one of one work, hand painted by Martz11.</p>
         <div class="sign">
           <img src="logo.png" alt="Martz11 signature">
           <span>SIGNATURE</span>
         </div>
       </div>
-      <button class="btn print" onclick="window.print()">PRINT CERTIFICATE</button>
       ${photos}
     </div>`;
   document.title = `${p.title} — CERTIFICATE — MARTZ11`;

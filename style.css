@@ -157,34 +157,41 @@ footer .copy { opacity: 0.5; }
 .empty { text-align: center; margin-top: 18vh; line-height: 2; }
 
 /* ---------- certificate (private page) ---------- */
-.cert { max-width: 560px; margin: 24px auto 0; }
+.cert { max-width: 595px; margin: 24px auto 0; }
 .thanks { text-align: center; margin-bottom: 48px; }
 .thanks h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.3em; margin-bottom: 16px; }
 .thanks p { text-transform: none; line-height: 1.8; font-size: 12px; }
+/* the card has A4 proportions (210 × 297); the painting shrinks to fit the space left */
 .cert-card {
+  aspect-ratio: 210 / 297;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 44px;
   border: 1px solid var(--blue);
-  outline: 1px solid var(--blue);
-  outline-offset: 6px;
-  padding: 32px;
-  margin: 6px;
+  box-shadow: inset 0 0 0 6px var(--white), inset 0 0 0 7px var(--blue);
 }
-.cert-head { text-align: center; font-weight: 700; letter-spacing: 0.25em; margin-bottom: 28px; }
-.cert .frame { aspect-ratio: 1 / 1; overflow: hidden; }
-.cert .rows { margin-top: 32px; }
+.cert-head { text-align: center; font-weight: 700; letter-spacing: 0.25em; margin-bottom: 24px; }
+.cert-card .frame {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+}
+.cert-card .frame img { width: auto; max-width: 100%; height: 100%; aspect-ratio: 1 / 1; }
+.cert .rows { margin-top: 24px; }
 .cert .row {
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  padding: 10px 0;
+  padding: 7px 0;
   border-bottom: 1px solid var(--line);
 }
 .cert .row span:first-child { opacity: 0.5; }
 .cert .row span:last-child { text-align: right; }
-.cert-text { text-transform: none; line-height: 1.8; margin-top: 28px; text-align: center; }
-.sign { margin-top: 32px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-.sign img { height: 56px; width: auto; }
+.cert-text { text-transform: none; line-height: 1.8; margin-top: 20px; text-align: center; }
+.sign { margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.sign img { height: 48px; width: auto; }
 .sign span { border-top: 1px solid var(--blue); padding-top: 8px; width: 180px; text-align: center; opacity: 0.6; }
-.btn.print { margin-top: 32px; }
 .cert-photos {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -193,13 +200,6 @@ footer .copy { opacity: 0.5; }
 }
 .cert-photos .frame:last-child:nth-child(odd) { grid-column: span 2; }
 
-@media print {
-  header, footer, .btn.print, .thanks, .cert-photos { display: none !important; }
-  main { padding: 0; min-height: 0; }
-  .cert { margin: 0 auto; }
-  .cert-card { break-inside: avoid; }
-  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-}
 
 /* ---------- responsive ---------- */
 @media (max-width: 1000px) {
@@ -213,6 +213,11 @@ footer .copy { opacity: 0.5; }
   .detail { grid-template-columns: 1fr; gap: 24px; margin-top: 8px; }
   .detail .frame { width: 100%; }
   .thumbs button { width: 44px; height: 44px; }
-  .cert-card { padding: 20px; }
   .detail .meta { max-width: none; }
+}
+/* phones: too narrow for an A4-shaped card on screen, so it just grows to fit */
+@media screen and (max-width: 720px) {
+  .cert-card { aspect-ratio: auto; padding: 28px 22px; }
+  .cert-card .frame { flex: none; }
+  .cert-card .frame img { width: 100%; height: auto; }
 }
