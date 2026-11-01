@@ -2,8 +2,8 @@
 
 const NAV = [
   { href: "index.html", label: "SHOP" },
-  { href: "archive.html", label: "ARCHIVE" },
-  { href: "code.html", label: "CODE" }
+  { href: "code.html", label: "CODE" },
+  { href: "archive.html", label: "ARCHIVE" }
 ];
 
 function layout(active) {
